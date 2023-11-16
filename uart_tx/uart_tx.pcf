@@ -1,0 +1,2 @@
+# UART TX pin
+set_io                uart_tx   99

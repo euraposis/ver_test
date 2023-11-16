@@ -1,0 +1,6 @@
+*.out
+*.ini
+*.history
+*.json
+*.dblite
+*.vcd

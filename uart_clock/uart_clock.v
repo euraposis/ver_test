@@ -5,21 +5,17 @@ module uart_clock(
 );
 
     wire div_clock;
-    wire uart_clock;
+    wire uart_t_clock;
 
-    reg [7:0] data = 8'd00;
+    reg [7:0] data;
 
-    wire [2:0] state;
-
-    reg start = 1'd0;
 
     UART_TX uart (
-        .clk(uart_clock),
+        .clk(uart_t_clock),
         .reset(reset),
         .data(data),
         .start(div_clock),
-        .tx(tx),
-        .state(state)
+        .tx(tx)
     );
 
     clock_divider divider (
@@ -33,15 +29,15 @@ module uart_clock(
         .clk(clk),
         .reset(reset),
         .divisor(32'd625),
-        .clk_div(uart_clock)
+        .clk_div(uart_t_clock)
     );
+	
 
-    always @ (posedge div_clock) begin
-        data <= data + 1;
-        start <= 1;
-    end
-
-    always @ (negedge div_clock) begin
-        start <= 0;
+    always @ (posedge div_clock or posedge reset) begin
+		if (reset) begin
+			data <= 0;
+		end else begin
+			data <= data + 1;
+		end
     end
 endmodule

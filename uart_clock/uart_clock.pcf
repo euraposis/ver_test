@@ -1,4 +1,4 @@
 # PMOD I/O
 set_io              clk 21
-set_io  -pullup yes tx 44
-set_io  -pullup yes reset 45
+set_io  -pullup no tx 44
+set_io  -pullup no reset 45

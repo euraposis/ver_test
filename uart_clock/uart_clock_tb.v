@@ -8,7 +8,7 @@ module uart_clock_tb();
     reg [7:0] data = 8'd0;
     wire tx;
 
-    uart_clock uart_clock (
+    uart_clock uut (
         .reset(reset),
         .clk(clk),
         .tx(tx)

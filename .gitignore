@@ -4,3 +4,5 @@
 *.json
 *.dblite
 *.vcd
+*bin
+*asc
